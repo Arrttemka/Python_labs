@@ -1,5 +1,5 @@
-from Talay_serializer.serialiser import serialize, deserialize
-from Talay_serializer import serializer_zavod
+from Talayserializer.serialiser import serialize, deserialize
+from Talayserializer import serializer_zavod
 
 def my_func(a):
     return a+3

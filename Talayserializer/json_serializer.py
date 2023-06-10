@@ -1,4 +1,4 @@
-from Talay_serializer.serialiser import serialize, deserialize
+from Talayserializer.serialiser import serialize, deserialize
 import regex
 
 

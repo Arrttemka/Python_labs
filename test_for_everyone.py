@@ -1,5 +1,5 @@
 import math
-from Talay_serializer.serializer_zavod import zavod
+from Talayserializer.serializer_zavod import zavod
 
 
 def my_decor(meth):

@@ -1,6 +1,6 @@
 import argparse
 
-from Talay_serializer.serializer_zavod import zavod
+from Talayserializer.serializer_zavod import zavod
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Serialization from file to file')

@@ -1,5 +1,5 @@
-from Talay_serializer.xml_serializer import xml_serializer
-from Talay_serializer.json_serializer import json_serializer
+from Talayserializer.xml_serializer import xml_serializer
+from Talayserializer.json_serializer import json_serializer
 
 
 class zavod:

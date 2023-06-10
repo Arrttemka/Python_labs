@@ -1,1 +1,0 @@
-ser = zavod.create_zavod('json')
