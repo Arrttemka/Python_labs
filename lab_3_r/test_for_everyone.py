@@ -1,5 +1,5 @@
 import math
-from Talayserializer.serializer_zavod import zavod
+from Talayserializer import zavod
 
 
 def my_decor(meth):
@@ -33,12 +33,14 @@ class B:
         self.a = a
         self.b = b
 
-    @classmethod
-    def class_meth(cls):
-        return math.pi
     @property
     def prop(self):
         return self.a * self.b
+
+    @classmethod
+    def class_meth(cls):
+        return math.pi
+
 
 class C(A, B):
     pass
@@ -46,19 +48,15 @@ class C(A, B):
 
 ser = zavod.create_zavod('json')
 
-# var = 15
-# var_ser = ser.dumps(var)
-# var_des = ser.loads(var_ser)
-# print(var_des)
-
-
+var = 15
+var_ser = ser.dumps(var)
+var_des = ser.loads(var_ser)
+print(var_des)
 
 C_ser = ser.dumps(C)
 C_des = ser.loads(C_ser)
 
-
-
-c = C(1, 2)
+c = C_des(1, 2)
 c_ser = ser.dumps(c)
 c_des = ser.loads(c_ser)
 
@@ -68,6 +66,34 @@ print(c_des.my_sin(10))
 print(c_des.prop)
 print(C_des.stat())
 print(c_des.class_meth())
+
+
+def gen(col):
+    for i in col:
+        yield i
+
+
+s = [1, 2, 3]
+a = gen(s)
+
+print(next(a))
+
+ser_gen = ser.dumps(gen)
+deser_gen = ser.loads(ser_gen)
+
+f = deser_gen(s)
+print(next(f))
+
+dss = lambda x: x ** 2, s
+
+ds_ser = ser.dumps(dss)
+ds_deser = ser.loads(ds_ser)
+
+print(dss)
+
+
+
+
 
 
 
