@@ -1,19 +1,17 @@
-def create_int_metaclass():
-    class IntMeta(type):
-        def __new__(cls, name, bases, attrs):
-            int_attrs = {key: value for key, value in attrs.items() if isinstance(value, int)}
-            return super().__new__(cls, name, bases, int_attrs)
+class IntMeta(type): #тут мы создаем метакласс наследуемый класс type обязателен тк все
+                     # метаклассы являются  объектами класса type
+    def __new__(cls, name, bases, attrs): #перегружаем магический метод __NEW__, это делается для дальнейшей
+        # реализации нашего метакласс(то есть, то какие атрибуты будут в нем созданы по умлочанию)
+        int_attrs = {key: value for key, value in attrs.items() if isinstance(value, int)} # здесь используем
+        # генератор словаря для отсеивания только интовых атрибутов(в данном случае переменных)
+        return super().__new__(cls, name, bases, int_attrs) #super()-общепринятый паттерн при работе с метаклассами
+                     #Использование super().__new__(...) в данном контексте позволяет нам наследоваться от
+                     # родительского метода __new__ и добавлять к нему свою специфическую логику
+                     #сам не очень понимаю как это работает но надо писать так
 
-    return IntMeta
-IntOnlyClass = create_int_metaclass()
-
-class MyClass(metaclass=IntOnlyClass):
+class NewClass(metaclass=IntMeta): # создаем еще один класс, метаклассом которого является наш IntMeta
     x = 10
-    y = "hello"
-    z = 20
+    y = "try"
 
-print(MyClass.x)  # Вывод: 10
-print(MyClass.z)  # Вывод: 20
-print(hasattr(MyClass, "x"))
-print(hasattr(MyClass, "z"))
-print(hasattr(MyClass, "y"))  # Вывод: False
+print(hasattr(NewClass, "x")) #в этих строчках проверяем наличие атрибутов в объекте(в данном случае объект-NewClass)
+print(hasattr(NewClass, "y")) # с помощью функции hasattr, в первом случае вернет нам True, во втором False
