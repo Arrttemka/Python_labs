@@ -15,8 +15,6 @@ def cache(func):
 @cache
 def my_func(n):
     return n**2
-
-
 print(my_func(2))
 print(my_func(5))
 print(my_func(2))

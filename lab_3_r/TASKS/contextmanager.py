@@ -4,10 +4,9 @@ class ContextManager:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        if exc_type is None:
-            print("Нет ошибок")
-        else:
+        if exc_type is not None:
             print(f"Произошла ошибка: {exc_type.__name__}:{exc_val}")
+            print("вышли из контекстного менеджера")
             return True
 
 with ContextManager():
